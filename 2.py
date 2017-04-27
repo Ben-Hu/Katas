@@ -11,3 +11,10 @@ def add(n):
 class wat(int):
     def __call__(self, n):
         return wat(self + n)
+
+#zzz
+def make_readable(seconds):
+    mins, secs = divmod(seconds, 60)
+    hours, mins = divmod(mins, 60)
+    return str(hours).zfill(2) + ':' + str(mins).zfill(2) + ':' + str(secs).zfill(2)
+
