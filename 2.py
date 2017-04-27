@@ -18,3 +18,15 @@ def make_readable(seconds):
     hours, mins = divmod(mins, 60)
     return str(hours).zfill(2) + ':' + str(mins).zfill(2) + ':' + str(secs).zfill(2)
 
+#move zeros
+def move_zeros(array):
+    i = 0
+    while i < len(array):
+        if array[i] == 0 and str(array[i]) != 'False' and not array[i:].count(array[i]) == len(array[i:]):
+            array.append(array.pop(i))
+        else:
+            i += 1
+    return array
+
+
+
