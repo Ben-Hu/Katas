@@ -31,4 +31,25 @@ def move_zeros(array):
 def move_zeros(array):
     return sorted(array, key=lambda x: x==0 and type(x) is not bool)
 
+#integer paritions
+import operator
+import numpy
+
+def part(n):
+    partitions = get_parts(n)
+    prods = []
+    while len(partitions) > 0:
+          cur_part = list(partitions.pop());
+          prods.append(reduce(operator.mul, cur_part, 1))
+    prods = sorted(prods)
+    print(prods)
+    return "Range: {0} Average: {1:.2f} Median: {2:.2f}".format(prods[-1] - prods[0], sum(prods) / float(len(prods)), numpy.median(numpy.array(prods))) 
+
+def get_parts(n):
+    cur_part = set()
+    cur_part.add((n, ))
+    for i in range(1, n):
+        for sub_part in get_parts(n - i):
+            cur_part.add(tuple(sorted((i, ) + sub_part)))
+    return cur_part
 
