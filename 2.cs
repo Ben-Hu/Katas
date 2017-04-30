@@ -16,3 +16,26 @@ public class Xbonacci
     return n == 0 ? new double[]{0} : seq;
   }
 }
+
+using System;
+using System.Linq;
+
+public class Kata
+{
+  public static int FindEvenIndex(int[] arr)
+  {
+    for (int i = 0; i < arr.Length; i++)
+    {
+      //oh ignore the current index
+      //Console.WriteLine(string.Join(",", arr.Take(i)));
+      //Console.WriteLine(string.Join(",", arr.Skip(i+1).Take(arr.Length-i)));
+      if ( arr.Take(i).Sum() == arr.Skip(i+1).Take(arr.Length-i).Sum() )
+      {
+        return i;
+      }
+    }
+    return -1;
+  }
+}
+
+

@@ -54,16 +54,20 @@ def get_parts(n):
     return cur_part
 
 #pig haha
-pig_it(text):
+def pig_it(text):
     out = text.split()
     for i in range(0,len(out)):
         if out[i][0].isalpha():
             out[i] = out[i][1:] + out[i][0] + 'ay'
-    return ' '.join(out)def move_zeros(array):
-        i = 0
-            while i < len(array):
-                        if array[i] == 0 and str(array[i]) != 'False' and not array[i:].count(array[i]) == len(array[i:]):
-                                        array.append(array.pop(i))
-                                                else:
-                                                                i += 1
-                                                                    return array
+    return ' '.join(out)
+
+def move_zeros(array):
+    i = 0
+    while i < len(array):
+        if array[i] == 0 and str(array[i]) != 'False' and not array[i:].count(array[i]) == len(array[i:]):
+            array.append(array.pop(i))
+        else:
+            i += 1
+    return array
+
+
