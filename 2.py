@@ -70,4 +70,33 @@ def move_zeros(array):
             i += 1
     return array
 
+# bad
+def recoverSecret(triplets):
+    result = '';
+    dup = False;
+    for triplet in triplets:
+      dup = True if (set(triplet) & set(result) != set([])) else False      
+      if dup: 
+          pivots = list(set(triplet) & set(result)) #stuff already in
+          inserts = list(set(triplet) - set(result)) #stuff not in 
+          pivots_ind_trip = [triplet.index(char) for char in pivots]
+          pivots_ind_res = [result.index(char) for char in pivots]
+          inserts_ind_trip = [triplet.index(char) for char in inserts]
+          #place inserts according to relative position in triplet
+          for i in range(0,len(inserts)):
+              pivots_pre = list(set(triplet)-set(inserts))[:inserts_ind_trip[i]]
+              pivots_post = list(set(triplet)-set(inserts))[inserts_ind_trip[i]+1:]
+              #insert after max of pivots
+              max_ind_pre = max([result.index(char) for char in pivots_pre]) if pivots_pre else -1
+              min_ind_post = min([result.index(char) for char in pivots_post]) if pivots_post else -1
+              if min_ind_post == -1:
+                  result = result[:max_ind_pre+1] + inserts[i] + result[max_ind_pre+1:]
+              elif max_ind_pre == -1:
+                  if min_ind_post == 0:
+                      result = inserts[i] + result
+                  else:
+                      result = result[:min_ind_post] + inserts[i] + result[min_ind_post:]
+      else: 
+          result = result + ''.join(triplet) 
+    return result
 
